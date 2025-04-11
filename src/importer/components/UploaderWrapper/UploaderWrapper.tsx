@@ -7,21 +7,23 @@ import useThemeStore from "../../stores/theme";
 import { UploaderWrapperProps } from "./types";
 import { PiArrowCounterClockwise, PiFile } from "react-icons/pi";
 
-export default function UploaderWrapper({ onSuccess, setDataError, ...props }: UploaderWrapperProps) {
+export default function UploaderWrapper({ onSuccess, setDataError,acceptedFileTypes, ...props }: UploaderWrapperProps) {
   const [loading, setLoading] = useState(false);
   const theme = useThemeStore((state) => state.theme);
   const { t } = useTranslation();
-
+  const onlyCSVAllowed =  { "text/csv": [".csv"]};
+  const allTypes = {
+    "application/vnd.ms-excel": [".xls"],
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
+    "text/csv": [".csv"]
+  };
+   const validFileTypes = acceptedFileTypes.length ?  onlyCSVAllowed : allTypes
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     noClick: true,
     noKeyboard: true,
     maxFiles: 1,
     // maxSize: 1 * Math.pow(1024, 3),
-    accept: {
-      "application/vnd.ms-excel": [".xls"],
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
-      "text/csv": [".csv"],
-    },
+    accept: validFileTypes,
     onDropRejected: (fileRejections) => {
       setLoading(false);
       // const errorMessage = fileRejections.map((fileRejection) => fileRejection.errors[0].message).join(", ");
