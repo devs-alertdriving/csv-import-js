@@ -17,6 +17,7 @@ export type CSVImporterProps = (HTMLAttributes<HTMLDialogElement> & HTMLAttribut
   waitOnComplete?: boolean;
   customStyles?: Record<string, string> | string;
   showDownloadTemplateButton?: boolean;
+  acceptedFileTypes: string[],
   skipHeaderRowSelection?: boolean;
   language?: string;
   customTranslations?: Resource;
