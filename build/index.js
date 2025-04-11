@@ -50829,6 +50829,8 @@
           "text/csv": [".csv"]
       };
       var validFileTypes = acceptedFileTypes.length ? onlyCSVAllowed : allTypes;
+      console.log("UploaderWrapper validFileTypes", validFileTypes);
+      console.log("UploaderWrapper acceptedFileTypes", acceptedFileTypes);
       var _c = useDropzone({
           noClick: true,
           noKeyboard: true,
@@ -50891,10 +50893,10 @@
   styleInject(css_248z$2);
 
   function Uploader(_a) {
-      var template = _a.template, skipHeaderRowSelection = _a.skipHeaderRowSelection, onSuccess = _a.onSuccess, showDownloadTemplateButton = _a.showDownloadTemplateButton, setDataError = _a.setDataError;
+      var template = _a.template, skipHeaderRowSelection = _a.skipHeaderRowSelection, acceptedFileTypes = _a.acceptedFileTypes, onSuccess = _a.onSuccess, showDownloadTemplateButton = _a.showDownloadTemplateButton, setDataError = _a.setDataError;
       var fields = useTemplateTable(template.columns);
       var theme = useThemeStore(function (state) { return state.theme; });
-      var uploaderWrapper = jsxRuntime.jsx(UploaderWrapper, { onSuccess: onSuccess, skipHeaderRowSelection: skipHeaderRowSelection, setDataError: setDataError });
+      var uploaderWrapper = jsxRuntime.jsx(UploaderWrapper, { onSuccess: onSuccess, acceptedFileTypes: acceptedFileTypes, skipHeaderRowSelection: skipHeaderRowSelection, setDataError: setDataError });
       showDownloadTemplateButton = showDownloadTemplateButton !== null && showDownloadTemplateButton !== void 0 ? showDownloadTemplateButton : true;
       var t = useTranslation().t;
       function downloadTemplate() {
@@ -50982,18 +50984,21 @@
       var renderContent = function () {
           switch (currentStep) {
               case StepEnum.Upload:
-                  return (jsxRuntime.jsx(Uploader, { template: parsedTemplate, skipHeaderRowSelection: skipHeader || false, showDownloadTemplateButton: showDownloadTemplateButton, setDataError: setDataError, onSuccess: function (file) { return __awaiter(_this, void 0, void 0, function () {
+                  return (jsxRuntime.jsx(Uploader, { template: parsedTemplate, skipHeaderRowSelection: skipHeader || false, showDownloadTemplateButton: showDownloadTemplateButton, setDataError: setDataError, acceptedFileTypes: acceptedFileTypes, onSuccess: function (file) { return __awaiter(_this, void 0, void 0, function () {
                           var fileType, fileType_1, reader, isNotBlankRow;
                           var _this = this;
                           return __generator(this, function (_a) {
                               setDataError(null);
                               fileType = file.name.slice(file.name.lastIndexOf(".") + 1);
+                              console.log("acceptedFileTypes", acceptedFileTypes);
                               if (acceptedFileTypes && !acceptedFileTypes.includes(fileType)) {
                                   fileType_1 = acceptedFileTypes.toString();
                                   setDataError("Only ".concat(fileType_1, " files can be uploaded"));
+                                  console.log("acceptedFileTypes Inside");
                               }
                               else if (!["csv", "xls", "xlsx"].includes(fileType)) {
                                   setDataError(t("Only CSV, XLS, and XLSX files can be uploaded"));
+                                  console.log("acceptedFileTypes ELse Inside");
                               }
                               reader = new FileReader();
                               isNotBlankRow = function (row) { return row.some(function (cell) { return cell.toString().trim() !== ""; }); };

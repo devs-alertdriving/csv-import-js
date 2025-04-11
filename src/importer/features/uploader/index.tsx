@@ -9,10 +9,10 @@ import style from "./style/Uploader.module.scss";
 import { PiDownloadSimple } from "react-icons/pi";
 
 
-export default function Uploader({ template, skipHeaderRowSelection, onSuccess, showDownloadTemplateButton, setDataError }: UploaderProps) {
+export default function Uploader({ template, skipHeaderRowSelection, acceptedFileTypes,onSuccess, showDownloadTemplateButton, setDataError }: UploaderProps) {
   const fields = useTemplateTable(template.columns);
   const theme = useThemeStore((state) => state.theme);
-  const uploaderWrapper = <UploaderWrapper onSuccess={onSuccess} skipHeaderRowSelection={skipHeaderRowSelection} setDataError={setDataError} />;
+  const uploaderWrapper = <UploaderWrapper onSuccess={onSuccess} acceptedFileTypes={acceptedFileTypes}  skipHeaderRowSelection={skipHeaderRowSelection} setDataError={setDataError} />;
   showDownloadTemplateButton = showDownloadTemplateButton ?? true;
   const { t } = useTranslation();
 
