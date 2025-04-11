@@ -50818,20 +50818,23 @@
 
   function UploaderWrapper(_a) {
       var _this = this;
-      var onSuccess = _a.onSuccess, setDataError = _a.setDataError; __rest$1(_a, ["onSuccess", "setDataError"]);
+      var onSuccess = _a.onSuccess, setDataError = _a.setDataError, acceptedFileTypes = _a.acceptedFileTypes; __rest$1(_a, ["onSuccess", "setDataError", "acceptedFileTypes"]);
       var _b = react.useState(false), loading = _b[0], setLoading = _b[1];
       var theme = useThemeStore(function (state) { return state.theme; });
       var t = useTranslation().t;
+      var onlyCSVAllowed = { "text/csv": [".csv"] };
+      var allTypes = {
+          "application/vnd.ms-excel": [".xls"],
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
+          "text/csv": [".csv"]
+      };
+      var validFileTypes = acceptedFileTypes.length ? onlyCSVAllowed : allTypes;
       var _c = useDropzone({
           noClick: true,
           noKeyboard: true,
           maxFiles: 1,
           // maxSize: 1 * Math.pow(1024, 3),
-          accept: {
-              "application/vnd.ms-excel": [".xls"],
-              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
-              "text/csv": [".csv"],
-          },
+          accept: validFileTypes,
           onDropRejected: function (fileRejections) {
               setLoading(false);
               // const errorMessage = fileRejections.map((fileRejection) => fileRejection.errors[0].message).join(", ");
