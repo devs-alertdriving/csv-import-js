@@ -17,7 +17,7 @@ export default function UploaderWrapper({ onSuccess, setDataError,acceptedFileTy
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
     "text/csv": [".csv"]
   };
-   const validFileTypes = acceptedFileTypes.length ?  onlyCSVAllowed : allTypes;
+   const validFileTypes = acceptedFileTypes?.length ?  onlyCSVAllowed : allTypes;
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     noClick: true,
     noKeyboard: true,

@@ -50828,7 +50828,7 @@
           "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [".xlsx"],
           "text/csv": [".csv"]
       };
-      var validFileTypes = acceptedFileTypes.length ? onlyCSVAllowed : allTypes;
+      var validFileTypes = (acceptedFileTypes === null || acceptedFileTypes === void 0 ? void 0 : acceptedFileTypes.length) ? onlyCSVAllowed : allTypes;
       var _c = useDropzone({
           noClick: true,
           noKeyboard: true,
