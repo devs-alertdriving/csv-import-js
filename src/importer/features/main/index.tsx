@@ -124,14 +124,11 @@ export default function Main(props: CSVImporterProps) {
             onSuccess={async (file: File) => {
               setDataError(null);
               const fileType = file.name.slice(file.name.lastIndexOf(".") + 1);
-              console.log("acceptedFileTypes",acceptedFileTypes);
               if (acceptedFileTypes && !acceptedFileTypes.includes(fileType)) {
                 const fileType =  acceptedFileTypes.toString();
                 setDataError(`Only ${fileType} files can be uploaded`);
-                console.log("acceptedFileTypes Inside");
               }else if(!["csv", "xls", "xlsx"].includes(fileType)) {
                 setDataError(t("Only CSV, XLS, and XLSX files can be uploaded"));
-                console.log("acceptedFileTypes ELse Inside");
               }
               const reader = new FileReader();
               const isNotBlankRow = (row: string[]) => row.some((cell) => cell.toString().trim() !== "");

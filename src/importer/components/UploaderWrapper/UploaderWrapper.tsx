@@ -18,8 +18,6 @@ export default function UploaderWrapper({ onSuccess, setDataError,acceptedFileTy
     "text/csv": [".csv"]
   };
    const validFileTypes = acceptedFileTypes.length ?  onlyCSVAllowed : allTypes;
-   console.log("UploaderWrapper validFileTypes",validFileTypes)
-   console.log("UploaderWrapper acceptedFileTypes",acceptedFileTypes)
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     noClick: true,
     noKeyboard: true,
