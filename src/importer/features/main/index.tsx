@@ -230,6 +230,7 @@ export default function Main(props: CSVImporterProps) {
 
               const onCompleteData = {
                 num_rows: mappedRows.length,
+                fileName:data.fileName,
                 num_columns: includedColumns.length,
                 error: null,
                 // TODO (client-sdk): Either remove "name" or change it to the be the name of the original upload column
