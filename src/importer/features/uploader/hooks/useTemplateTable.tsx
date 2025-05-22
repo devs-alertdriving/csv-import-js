@@ -22,7 +22,15 @@ export default function useTemplateTable(fields: TemplateColumn[] = []) {
               </div>
             ),
           }
-        : item.name,
+        : {
+            raw: item.name,
+            content: (
+               item?.required ?
+              <div>
+                <span className="P9Bold">{item.name}</span>
+              </div> : item.name
+            ) ,
+          },
       [requiredKey]: { raw: item?.required ? 1 : 0, content: item?.required ? <PiCheckBold /> : <></> },
     }));
   }, [fields]);
