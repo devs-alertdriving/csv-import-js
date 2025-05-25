@@ -50876,12 +50876,12 @@
                   _a[expectedColumnKey] = (item === null || item === void 0 ? void 0 : item.description)
                       ? {
                           raw: item.name,
-                          content: (jsxRuntime.jsx("div", { children: jsxRuntime.jsx(Tooltip, __assign$1({ title: item === null || item === void 0 ? void 0 : item.description }, { children: jsxRuntime.jsx("span", __assign$1({ className: "test-P9" }, { children: item.name })) })) })),
+                          content: (jsxRuntime.jsx("div", { children: jsxRuntime.jsx(Tooltip, __assign$1({ title: item === null || item === void 0 ? void 0 : item.description }, { children: (item === null || item === void 0 ? void 0 : item.required) ? jsxRuntime.jsx("span", __assign$1({ className: "test-P9" }, { children: item.name })) : item.name })) })),
                       }
                       : {
                           raw: item.name,
                           content: ((item === null || item === void 0 ? void 0 : item.required) ?
-                              jsxRuntime.jsxs("div", { children: [jsxRuntime.jsxs("span", __assign$1({ className: "P9Bold" }, { children: [item.name, "*"] })), "**"] }) : item.name),
+                              jsxRuntime.jsx("div", { children: jsxRuntime.jsxs("span", __assign$1({ className: "P9Bold" }, { children: [item.name, "*"] })) }) : item.name),
                       },
                   _a[requiredKey] = { raw: (item === null || item === void 0 ? void 0 : item.required) ? 1 : 0, content: (item === null || item === void 0 ? void 0 : item.required) ? jsxRuntime.jsx(PiCheckBold, {}) : jsxRuntime.jsx(jsxRuntime.Fragment, {}) },
                   _a);
