@@ -19,7 +19,7 @@ export default function useTemplateTable(fields: TemplateColumn[] = []) {
             content: (
               <div>
                 <Tooltip title={item?.description}>
-             {  item?.required ? <span className="test-P9">{item.name}</span> : item.name}</Tooltip> 
+             {  item?.required ? <span className="wip-mandatory-field">{item.name}*</span> : item.name}</Tooltip> 
               </div>
             ),
           }
@@ -28,7 +28,7 @@ export default function useTemplateTable(fields: TemplateColumn[] = []) {
             content: (
                item?.required ?
               <div>
-                <span className="P9Bold">{item.name}*</span>
+                <span className="wip-mandatory-field">{item.name}*</span>
               </div> : item.name
             ) ,
           },
