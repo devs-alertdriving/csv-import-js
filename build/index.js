@@ -51012,8 +51012,11 @@
                                       switch (fileType) {
                                           case "csv":
                                               papaparse_min.parse(bstr.toString(), {
-                                                  header: true,
-                                                  skipEmptyLines: 'greedy',
+                                                  beforeFirstChunk: function (chunk) {
+                                                      var lines = chunk.split('\n');
+                                                      lines.splice(0, 1); // Remove the first n lines
+                                                      return lines.join('\n');
+                                                  },
                                                   complete: function (results) {
                                                       var csvData = results.data;
                                                       var rows = csvData.filter(isNotBlankRow).map(function (row, index) { return ({ index: index, values: row }); });
